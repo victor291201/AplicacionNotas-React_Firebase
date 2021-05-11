@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/victor291201/AplicacionNotas-React_Firebase/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/victor291201/AplicacionNotas-React_Firebase/static/js/main.fe251338.chunk.js",
+    "main.js.map": "/victor291201/AplicacionNotas-React_Firebase/static/js/main.fe251338.chunk.js.map",
+    "runtime-main.js": "/victor291201/AplicacionNotas-React_Firebase/static/js/runtime-main.242bc9b7.js",
+    "runtime-main.js.map": "/victor291201/AplicacionNotas-React_Firebase/static/js/runtime-main.242bc9b7.js.map",
+    "static/css/2.12f5803f.chunk.css": "/victor291201/AplicacionNotas-React_Firebase/static/css/2.12f5803f.chunk.css",
+    "static/js/2.7e1235c9.chunk.js": "/victor291201/AplicacionNotas-React_Firebase/static/js/2.7e1235c9.chunk.js",
+    "static/js/2.7e1235c9.chunk.js.map": "/victor291201/AplicacionNotas-React_Firebase/static/js/2.7e1235c9.chunk.js.map",
+    "index.html": "/victor291201/AplicacionNotas-React_Firebase/index.html",
+    "precache-manifest.d75cfb4a93c657d5ae2b8e5b5d76f216.js": "/victor291201/AplicacionNotas-React_Firebase/precache-manifest.d75cfb4a93c657d5ae2b8e5b5d76f216.js",
+    "service-worker.js": "/victor291201/AplicacionNotas-React_Firebase/service-worker.js",
+    "static/css/2.12f5803f.chunk.css.map": "/victor291201/AplicacionNotas-React_Firebase/static/css/2.12f5803f.chunk.css.map",
+    "static/css/main.5ecd60fb.chunk.css.map": "/victor291201/AplicacionNotas-React_Firebase/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.7e1235c9.chunk.js.LICENSE": "/victor291201/AplicacionNotas-React_Firebase/static/js/2.7e1235c9.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.242bc9b7.js",
+    "static/css/2.12f5803f.chunk.css",
+    "static/js/2.7e1235c9.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.fe251338.chunk.js"
+  ]
+}
