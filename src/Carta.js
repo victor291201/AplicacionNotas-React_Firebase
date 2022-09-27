@@ -5,7 +5,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 class Carta extends Component{
   render(){
-  	if(this.props.prioridad == "Alta"){
+  	if(this.props.prioridad === "Alta"){
 	    return(
 	    	<div className=" card col-md-3 col-sm-4 col-lg-3 col-xl-3 d-inline-block m-2 mt-5 tarjeta">
 	    		<button onClick={this.props.elim} type="button" className="close sinborde" aria-label="Close">
@@ -20,7 +20,7 @@ class Carta extends Component{
 				</div>
 	    );
 	  }
-  	if(this.props.prioridad == "Media"){
+  	if(this.props.prioridad === "Media"){
 	    return(
 	    	<div className=" card col-md-3 col-sm-4 col-lg-3 col-xl-3 d-inline-block m-2 mt-5 tarjeta">
 	    		<button onClick={this.props.elim} type="button" className="close" aria-label="Close">

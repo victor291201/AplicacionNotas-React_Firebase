@@ -2,8 +2,16 @@ import React,{Component} from 'react';
 import $ from 'jquery';
 import Popper from 'popper.js';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import Carta from "./Carta.js";
-import * as firebase from 'firebase';
+import Carta from "./Carta";
+import IniciarSesion from "./vistas/IniciarSesion";
+import ReestablecerContraseña from "./vistas/ReestablecerContraseña";
+import Registrarse from "./vistas/Registrarse";
+import TareaE from "./vistas/TareaE";
+import TareaPM from "./vistas/TareaPM";
+import TareasE from "./vistas/TareasE.js";
+import TareasPM from "./vistas/TareasPM";
+import {initializeApp} from 'firebase/app';
+import {getFirestore, collection, getDocs} from 'firebase/firestore';
 
 const config = {
   apiKey: "AIzaSyBPgHg7SxXbzkJWMTRzDR0nRkJ1kZIJR-Y",
@@ -15,9 +23,9 @@ const config = {
   appId: "1:841044968583:web:b37475bb6262c1f6652422",
   measurementId: "G-D5M2LEQ35Y"
 };
-firebase.initializeApp(config)
+const conexion = initializeApp(config)
 
-const nameRef = firebase.database().ref().child("notas")
+const nameRef = getFirestore(conexion);
 
 
 class App extends Component{
@@ -31,13 +39,12 @@ class App extends Component{
     this.delone = this.delone.bind(this)
   };
 
-  componentWillMount(){
-    nameRef.on('value', snapshot => {
-    var  dato = snapshot.val()
+  async componentWillMount(){
+    
+    var  dato = await getDocs(collection(nameRef,"notas"));
     this.setState({
-      componentes: dato
+      componentes: dato.docs
       })
-    })
   }
 
   delt(){
@@ -50,7 +57,7 @@ class App extends Component{
     nameRef.set(datos)
   }
   add(){
-    if(document.getElementById("nombre").value != "" && document.getElementById("nota").value != "" && document.getElementById("sexo").value != "..." && document.getElementById("prioridad").value != "..."){
+    if(document.getElementById("nombre").value !== "" && document.getElementById("nota").value !== "" && document.getElementById("sexo").value !== "..." && document.getElementById("prioridad").value !== "..."){
       if(this.state.componentes == null){
         var item = {nombre: document.getElementById("nombre").value, nota: document.getElementById("nota").value, sexo: document.getElementById("sexo").value, prioridad: document.getElementById("prioridad").value }
 
@@ -65,9 +72,9 @@ class App extends Component{
         document.getElementById("prioridad").value = "..."
       }
       else{
-        var item = {nombre: document.getElementById("nombre").value, nota: document.getElementById("nota").value, sexo: document.getElementById("sexo").value, prioridad: document.getElementById("prioridad").value }
+        item = {nombre: document.getElementById("nombre").value, nota: document.getElementById("nota").value, sexo: document.getElementById("sexo").value, prioridad: document.getElementById("prioridad").value }
 
-        var datos = this.state.componentes
+        datos = this.state.componentes
         datos.push(item)
 
         nameRef.set(datos)
@@ -85,24 +92,25 @@ class App extends Component{
   render(){
     if(this.state.componentes != null){
       var tarjetas = this.state.componentes.map((value,number,numberArray)=>{
-        if(value.prioridad == "Alta"){
+        if(value.prioridad === "Alta"){
         return(
           <Carta color="red" className="col-md-3 col-sm-4 col-lg-3 col-xl-3 mt-3 mb-3 mr-3"elim={() => this.delone(number)} nombre={value.nombre} nota={value.nota} sexo={value.sexo} prioridad={value.prioridad}/>
         )}
-        if(value.prioridad == "Media"){
+        if(value.prioridad === "Media"){
         return(
           <Carta color="yellow" className="col-md-3 col-sm-4 col-lg-3 col-xl-3 mt-3 mb-3 mr-3"elim={() => this.delone(number)} nombre={value.nombre} nota={value.nota} sexo={value.sexo} prioridad={value.prioridad}/>
         )}
-        if(value.prioridad == "Baja"){
+        if(value.prioridad === "Baja"){
         return(
           <Carta color="green" className="col-md-3 col-sm-4 col-lg-3 col-xl-3 mt-3 mb-3 mr-3"elim={() => this.delone(number)} nombre={value.nombre} nota={value.nota} sexo={value.sexo} prioridad={value.prioridad}/>
         )}
-      }).reverse();
+      return null;}).reverse();
     }
     else{
-      var tarjetas = ""
+      tarjetas = ""
     }
     return (
+      /** 
         <div className="container-fluid bg-dark d-block">
           <h1 className="mt-3 text-white badge badge-pill badge-danger badge float-right" >{this.state.componentes == null? 0:this.state.componentes.length}</h1>
           <div className="card d-inline-block col-md-3 col-sm-3 col-lg-3 col-xl-3 mt-4 mb-5 mr-3">
@@ -143,7 +151,8 @@ class App extends Component{
           </div>
           {tarjetas}
         </div>
-
+      */
+     <TareaPM/>
     );
   };
 }
