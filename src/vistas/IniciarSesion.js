@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function IniciarSesion (props) {
     return (
@@ -12,10 +13,10 @@ export default function IniciarSesion (props) {
                                 <input type="email" placeholder='Insertar codigo o correo' class="form-control"></input>
                                 <input type="password" placeholder='Insertar contraseña' class="form-control"></input>
                             </div>
-                            <button className='btn btn-danger mt-1'>Iniciar Sesion</button>
+                            <button className='btn btn-danger mt-1'><Link to="/">Iniciar Sesion</Link></button>
                             <div className='mt-4 d-flex flex-column justify-content-center align-items-center' style={{height:50}}>
-                                <p className=" m-0 text-muted">¿Olvidaste tu contraseña?</p>
-                                <p className='m-0'>Registrarte</p>
+                                <p className=" m-0 text-muted"><Link to="/ReestablecerContrasena">¿Olvidaste tu contraseña?</Link></p>
+                                <p className='m-0'><Link to="/Registrarse">Registrarte</Link></p>
                             </div>
                         </div>
                     </div>

@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import $ from 'jquery';
 import Popper from 'popper.js';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import Carta from "./Carta";
 import IniciarSesion from "./vistas/IniciarSesion";
 import ReestablecerContraseña from "./vistas/ReestablecerContraseña";
 import Registrarse from "./vistas/Registrarse";
@@ -10,9 +9,12 @@ import TareaE from "./vistas/TareaE";
 import TareaPM from "./vistas/TareaPM";
 import TareasE from "./vistas/TareasE.js";
 import TareasPM from "./vistas/TareasPM";
+import GestionarGruposM from "./vistas/GestionarGruposM";
+import Forms from './componentes/Forms';
 import {initializeApp} from 'firebase/app';
 import {getFirestore, collection, getDocs} from 'firebase/firestore';
-
+import { BrowserRouter,Route, Routes } from 'react-router-dom';
+import GestionarGruposE from './vistas/GestionarGruposE';
 const config = {
   apiKey: "AIzaSyBPgHg7SxXbzkJWMTRzDR0nRkJ1kZIJR-Y",
   authDomain: "prueba-eac4b.firebaseapp.com",
@@ -90,24 +92,41 @@ class App extends Component{
     }
   };
   render(){
-    if(this.state.componentes != null){
-      var tarjetas = this.state.componentes.map((value,number,numberArray)=>{
-        if(value.prioridad === "Alta"){
+    if(false){
+      return(
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<IniciarSesion/>}/>
+            <Route path='/Registrarse' element={<Registrarse/>}/>
+            <Route path='/ReestablecerContrasena' element={<ReestablecerContraseña/>}/>
+          </Routes>
+        </BrowserRouter>
+      )
+    }else{
+      if(false){
         return(
-          <Carta color="red" className="col-md-3 col-sm-4 col-lg-3 col-xl-3 mt-3 mb-3 mr-3"elim={() => this.delone(number)} nombre={value.nombre} nota={value.nota} sexo={value.sexo} prioridad={value.prioridad}/>
-        )}
-        if(value.prioridad === "Media"){
+          <BrowserRouter>
+            <Routes>
+              <Route path='/' element={<TareasE/>}/>
+              <Route path='/Tarea:id' element={<TareaE/>}/>
+              <Route path='/NuevaTarea' element={<TareaE/>}/>
+              <Route path='/GestionarGrupos' element={<GestionarGruposE/>}/>
+            </Routes>
+          </BrowserRouter>
+        )
+      }
+      else{
         return(
-          <Carta color="yellow" className="col-md-3 col-sm-4 col-lg-3 col-xl-3 mt-3 mb-3 mr-3"elim={() => this.delone(number)} nombre={value.nombre} nota={value.nota} sexo={value.sexo} prioridad={value.prioridad}/>
-        )}
-        if(value.prioridad === "Baja"){
-        return(
-          <Carta color="green" className="col-md-3 col-sm-4 col-lg-3 col-xl-3 mt-3 mb-3 mr-3"elim={() => this.delone(number)} nombre={value.nombre} nota={value.nota} sexo={value.sexo} prioridad={value.prioridad}/>
-        )}
-      return null;}).reverse();
-    }
-    else{
-      tarjetas = ""
+            <BrowserRouter>
+              <Routes>
+                <Route path='/' element={<TareasPM/>}/>
+                <Route path='/Tarea:id' element={<TareaPM/>}/>
+                <Route path='/NuevaTarea' element={<TareaPM/>}/>
+                <Route path='/GestionarGrupos' element={<GestionarGruposM/>}/>
+              </Routes>
+            </BrowserRouter>
+        )
+      }
     }
     return (
       /** 
@@ -152,7 +171,7 @@ class App extends Component{
           {tarjetas}
         </div>
       */
-     <TareaPM/>
+     null
     );
   };
 }
