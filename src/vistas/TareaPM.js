@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../componentes/NavBar';
 import { Link } from 'react-router-dom';
+import '../styles/styles.css'
 
 export default function TareaPM (props) {
     return (
@@ -72,7 +73,7 @@ export default function TareaPM (props) {
                                     </div>
                                 </div>
                                 <button className='btn btn-danger mt-3 mb-n1'>
-                                    <Link to="/">Crear</Link>
+                                    <Link to="/" className='NLink'>Crear</Link>
                                 </button>
                             </div>
                         </div>

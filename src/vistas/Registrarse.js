@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/styles.css'
 
 export default function Registrarse (props) {
     return (
@@ -16,7 +17,7 @@ export default function Registrarse (props) {
                                 <input type="password" placeholder='Insertar contraseña' class="form-control"></input>
                                 <input type="password" placeholder='Repetir contraseña' class="form-control"></input>   
                             </div>
-                            <button className='btn btn-danger mt-1'><Link to="/">Registrarse</Link></button>
+                            <button className='btn btn-danger mt-1'><Link to="/" className='NLink'>Registrarse</Link></button>
                         </div>
                     </div>
                 </div>

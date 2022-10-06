@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../componentes/NavBar';
 import { Link } from 'react-router-dom';
+import '../styles/styles.css'
 
 export default function GestionarGruposE (props) {
     return (

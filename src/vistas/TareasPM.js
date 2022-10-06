@@ -2,6 +2,8 @@ import React from 'react';
 import NavBar from '../componentes/NavBar';
 import { Link } from 'react-router-dom';
 import Card from '../componentes/Card';
+import DropDown from '../componentes/DropDown';
+import '../styles/styles.css'
 
 export default function TareasE (props) {
     return (
@@ -12,7 +14,7 @@ export default function TareasE (props) {
                     <div className='col-md-12 py-5 px-4' style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gridAutoRows:"225px",gridGap:"20px"}}>
                         <div className="d-flex justify-content-center align-items-center"style={{height:"100%"}}>
                             <div className="bg-light d-flex justify-content-center align-items-center" style={{width:70,height:70,borderRadius:"50%"}}>
-                                <Link to="/NuevaTarea">+</Link>
+                                <Link to="/NuevaTarea" className='NLink'>+</Link>
                             </div>
                         </div>
                         <Card title="monitoria" 
@@ -37,7 +39,7 @@ export default function TareasE (props) {
                         autor="francisco(monitor)"prioridad="Baja"/>
                     </div>
                     <div className='d-flex justify-content-center align-items-center text-light' style={{width:"100vw", position:"sticky",bottom:0}}>
-                        <Link to="/GestionarGrupos"><p>Gestionar grupos</p></Link>
+                        <Link to="/GestionarGrupos" className="NLink"><p>Gestionar grupos</p></Link>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../componentes/NavBar';
 import { Link } from 'react-router-dom';
+import '../styles/styles.css'
 
 export default function TareaE (props) {
     return (
@@ -28,7 +29,7 @@ export default function TareaE (props) {
                                     <input type="time" name="eta"  style={{border:"1px solid #BDBDBD",borderRadius:"5px",width:140,height:37,padding:12,color:"#505050"}}></input>
                                 </div>
                                 <button className='btn btn-danger mt-n1 mb-2'>
-                                    <Link to="/">Crear</Link>
+                                    <Link to="/" className='NLink'>Crear</Link>
                                 </button>
                             </div>
                         </div>

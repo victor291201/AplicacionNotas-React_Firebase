@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/styles.css'
 
 export default function IniciarSesion (props) {
     return (
@@ -16,7 +17,7 @@ export default function IniciarSesion (props) {
                             <button className='btn btn-danger mt-1'><Link to="/">Iniciar Sesion</Link></button>
                             <div className='mt-4 d-flex flex-column justify-content-center align-items-center' style={{height:50}}>
                                 <p className=" m-0 text-muted"><Link to="/ReestablecerContrasena">¿Olvidaste tu contraseña?</Link></p>
-                                <p className='m-0'><Link to="/Registrarse">Registrarte</Link></p>
+                                <p className='m-0'><Link to="/Registrarse" className='NLink'>Registrarte</Link></p>
                             </div>
                         </div>
                     </div>

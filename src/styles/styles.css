@@ -1,0 +1,30 @@
+.NLink{
+    color: inherit;
+}
+.NLink:hover{
+    color: inherit;
+    text-decoration: none;
+}
+.dropdown-menuP{
+    position: absolute;
+    right: 20px;
+    top:40px;
+    display: inline-block;
+    border-radius: 7px;
+    border:1px solid #D5D5D5;
+    background-color: white;
+    list-style: none;
+    padding: 13px;
+}
+.dropdown-itemP{
+    color:inherit;
+}
+.dropdown-itemP:hover{
+    text-decoration: none;
+    color:inherit;
+}
+.Form{
+    position: absolute;
+    top:0px;
+    background-color: rgba(0, 0, 0, 0.371);
+}

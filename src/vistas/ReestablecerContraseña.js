@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/styles.css'
 
 export default function ReestablecerContraseña (props) {
     return (
@@ -13,7 +14,7 @@ export default function ReestablecerContraseña (props) {
                                 <input type="email" placeholder='Insertar codigo de verificacion' class="form-control"></input>
                                 <input type="password" placeholder='Insertar nueva contraseña' class="form-control"></input>
                             </div>
-                            <button className='btn btn-danger mt-1'><Link to="/">Reestablecer</Link></button>
+                            <button className='btn btn-danger mt-1'><Link to="/" className='NLink'>Reestablecer</Link></button>
                         </div>
                     </div>
                 </div>
