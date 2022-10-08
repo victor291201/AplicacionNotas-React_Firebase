@@ -4,8 +4,8 @@ import '../styles/styles.css'
 
 export default function ReestablecerContraseña (props) {
     return (
-        <div className='container-fluid' style={{height:"100vh"}}>
-            <div className='row' style={{height:"100vh"}}>
+        <div className='container-fluid h100'>
+            <div className='row h100'>
                 <div className='col-md-12 d-flex justify-content-center align-items-center'>
                     <div className="card" style={{width:400,height:300}}>
                         <div className="card-body d-flex flex-column justify-content-center align-items-center">

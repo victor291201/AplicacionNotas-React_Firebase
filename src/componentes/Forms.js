@@ -11,8 +11,10 @@ export default function Forms (props) {
                     <div className='col-md-12 d-flex justify-content-center align-items-center'>
                         <div className="card" style={{width:400,height:200}}>
                             <div className="card-body d-flex flex-column justify-content-center align-items-center">
-                                <i class="bi bi-x"></i>
-                                <h5 className="card-title mb-1">Añadir estudiante</h5>
+                                <div style={{width:"100%"}}>
+                                    <i class="bi bi-x float-right mt-n2 CPointer" style={{fontSize:19}} onClick={props.toggle}></i>
+                                    <h5 className="card-title mb-1"  style={{width:"100%",textAlign:"center"}}>Añadir grupo</h5>
+                                </div>
                                 <div className='my-3 d-flex flex-column justify-content-around align-items-center' style={{width:300,height:120}}>
                                     <input type="email" placeholder='Insertar codigo del estudiante' class="form-control"></input>
                                 </div>
@@ -31,8 +33,8 @@ export default function Forms (props) {
                     <div className="card" style={{width:400,height:200}}>
                         <div className="card-body d-flex flex-column justify-content-center align-items-center">
                             <div style={{width:"100%"}}>
-                                <i class="bi bi-x float-right mt-n2" onClick={props.toggle}></i>
-                                <h5 className="card-title mb-1"  style={{width:"100%",textAlign:"center"}}>Añadir grupo</h5>
+                                <i class="bi bi-x float-right mt-n2 CPointer" style={{fontSize:19}} onClick={props.toggle}></i>
+                                <h5 className="card-title mb-1"  style={{width:"100%",textAlign:"center"}}>Añadir estudiante</h5>
                             </div>
                             <div className='my-3 d-flex flex-column justify-content-around align-items-center' style={{width:300,height:120}}>
                                 <input type="email" placeholder='Insertar codigo del grupo' class="form-control"></input>

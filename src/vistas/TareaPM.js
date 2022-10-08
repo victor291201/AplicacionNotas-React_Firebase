@@ -5,10 +5,10 @@ import '../styles/styles.css'
 
 export default function TareaPM (props) {
     return (
-        <div style={{height:"100%",width:"100%",padding:0,margin:0}}>
+        <div className='h100p w100p p-0 m-0'>
             <NavBar  tipo={1}/>
-            <div className='container-fluid px-2 m-0' style={{width:"100%",height:"calc(100% - 50px)"}}>
-                <div className='row p-0 m-0' style={{height:"100%",width:"100%"}}>
+            <div className='container-fluid px-2 m-0 w100p hcalc'>
+                <div className='row p-0 m-0 h100p w100p'>
                     <div className='col-md-12 d-flex justify-content-center align-items-center'>
                         <div className="card" style={{width:400,height:530}}>
                             <div className="card-body d-flex flex-column justify-content-center align-items-center">
@@ -22,12 +22,11 @@ export default function TareaPM (props) {
                                         <option>Media</option>
                                         <option>Baja</option>
                                     </select>
-                                    <input type="date" id="start" name="trip-start" style={{border:"1px solid #BDBDBD",borderRadius:"5px",width:140,height:37,padding:12,color:"#505050"}}
+                                    <input type="date" id="start" name="trip-start" className='Border' style={{borderRadius:"5px",width:140,height:37,padding:12,color:"#505050"}}
                                     value="2018-07-22"
                                     min="2018-01-01" max="2030-12-31"/>
-                                    <input type="time" name="eta"  style={{border:"1px solid #BDBDBD",borderRadius:"5px",width:140,height:37,padding:12,color:"#505050"}}></input>
-                                    <div className='mt-1 mb-n3' style={{width:"100%",height:90,
-                                                                    overflowY:"auto",display:"grid",gridTemplateColumns:"repeat(2,1fr)",
+                                    <input type="time" name="eta" className='Border' style={{borderRadius:"5px",width:140,height:37,padding:12,color:"#505050"}}></input>
+                                    <div className='mt-1 mb-n3 w100p OverY' style={{height:90,display:"grid",gridTemplateColumns:"repeat(2,1fr)",
                                                                     gridAutoRows:"30px"}}>
                                         <div className="form-check d-flex align-items-center">
                                             <input className="form-check-input" type="checkbox" value="" id="defaultCheck1"/>

@@ -1,3 +1,40 @@
+*::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+*::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+*::-webkit-scrollbar-button:increment,*::-webkit-scrollbar-button {
+    display: none;
+} 
+
+*::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+.w100p{
+    width: 100%;
+}
+.h100p{
+    height: 100%;
+}
+.h100{
+    height: 100vh;
+}
+.hcalc{
+    height:calc(100% - 50px);
+}
 .NLink{
     color: inherit;
 }
@@ -14,17 +51,31 @@
     border:1px solid #D5D5D5;
     background-color: white;
     list-style: none;
-    padding: 13px;
+    padding: 0px;
+    overflow: hidden;
 }
 .dropdown-itemP{
+    display: inline-block;
+    width: 100%;
     color:inherit;
+    padding: 2.5px 10px;
 }
 .dropdown-itemP:hover{
     text-decoration: none;
-    color:inherit;
+    color:white;
+    background-color: #343a40;
 }
 .Form{
     position: absolute;
     top:0px;
     background-color: rgba(0, 0, 0, 0.371);
+}
+.CPointer{
+    cursor: pointer;
+}
+.OverY{
+    overflow-y: auto;
+}
+.Border{
+    border: 1px solid #BDBDBD;
 }

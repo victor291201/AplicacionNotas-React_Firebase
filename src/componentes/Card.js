@@ -21,7 +21,7 @@ class Card extends Component{
 	    	<div className="card d-inline-block"style={{height:"100%"}}>
 				{this.state.view?<DropDown/>:null}
 				<div className="card-body">
-					<i class="bi bi-three-dots d-flex float-right mt-n2" onClick={this.toggle}></i>
+					<i class="bi bi-three-dots d-flex float-right mt-n2 CPointer" onClick={this.toggle}></i>
 					<h5 className="card-title">{this.props.title}</h5>
 					<p className="card-text" style={{height:80,overflowY:"auto"}}>{this.props.description}</p>
 					<p className="card-subtitle  text-muted d-inline">{this.props.fecha} </p>
@@ -38,7 +38,7 @@ class Card extends Component{
 	    	<div className="card d-inline-block"style={{height:"100%"}}>
 				{this.state.view?<DropDown/>:null}
 				<div className="card-body">
-					<i class="bi bi-three-dots d-flex float-right mt-n2" onClick={this.toggle}></i>
+					<i class="bi bi-three-dots d-flex float-right mt-n2 CPointer" onClick={this.toggle}></i>
 					<h5 className="card-title">{this.props.title}</h5>
 					<p className="card-text" style={{height:80,overflowY:"auto"}}>{this.props.description}</p>
 					<p className="card-subtitle  text-muted d-inline">{this.props.fecha} </p>
@@ -55,7 +55,7 @@ class Card extends Component{
 	    	<div className="card d-inline-block"style={{height:"100%"}}>
 				{this.state.view?<DropDown/>:null}
 				<div className="card-body">
-					<i class="bi bi-three-dots d-flex float-right mt-n2" onClick={this.toggle}></i>
+					<i class="bi bi-three-dots d-flex float-right mt-n2 CPointer" onClick={this.toggle}></i>
 					<h5 className="card-title">{this.props.title}</h5>
 					<p className="card-text" style={{height:80,overflowY:"auto"}}>{this.props.description}</p>
 					<p className="card-subtitle  text-muted d-inline">{this.props.fecha} </p>
