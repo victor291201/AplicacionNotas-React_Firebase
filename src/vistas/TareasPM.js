@@ -8,7 +8,7 @@ import '../styles/styles.css'
 export default function TareasE (props) {
     return (
         <div className='w100p h100p m-0 p-0'>
-            <NavBar/>
+            <NavBar CerrarSesion={props.CerrarSesion}/>
             <div className='container-fluid px-2 m-0 w100p hcalc'>
                 <div className='row p-0 m-0 w100p h100p'>
                     <div className='col-md-12 py-5 px-4' style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gridAutoRows:"225px",gridGap:"20px"}}>
