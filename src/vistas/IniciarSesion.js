@@ -1,12 +1,14 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/styles.css'
+import { DataContext } from '../context/Context';
 
 export default function IniciarSesion (props) {
     const [Obj, setObj] = useState({});
     const Change = (e) => {
         setObj({...Obj, [e.target.name]: e.target.value.toString()});
     }
+    const {IniciarSesion} = useContext(DataContext);
     return (
         <div className='container-fluid h100'>
             <div className='row h100'>
@@ -20,7 +22,7 @@ export default function IniciarSesion (props) {
                                 <input type="password" name="password" placeholder='Insertar contraseña' 
                                 class="form-control" value={Obj.password} onChange={(e)=>Change(e)}></input>
                             </div>
-                            <button className='btn btn-danger mt-1' onClick={()=>props.IniciarSesion(Obj)}>Iniciar Sesion</button>
+                            <button className='btn btn-danger mt-1' onClick={()=>IniciarSesion(Obj)}>Iniciar Sesion</button>
                             <div className='mt-4 d-flex flex-column justify-content-center align-items-center' style={{height:50}}>
                                 <p className=" m-0 text-muted"><Link className='NLink' to="/ReestablecerContrasena">¿Olvidaste tu contraseña?</Link></p>
                                 <p className='m-0'><Link to="/Registrarse" className='NLink'>Registrarte</Link></p>

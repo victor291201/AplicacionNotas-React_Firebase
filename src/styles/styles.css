@@ -62,7 +62,7 @@
 }
 .dropdown-itemP:hover{
     text-decoration: none;
-    color:white;
+    color:white !important;
     background-color: #343a40;
 }
 .Form{

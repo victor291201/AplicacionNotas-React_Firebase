@@ -1,11 +1,13 @@
-import React from 'react';
+import React,{useState,useContext} from 'react';
 import NavBar from '../componentes/NavBar';
 import { Link } from 'react-router-dom';
 import Card from '../componentes/Card';
 import DropDown from '../componentes/DropDown';
+import { DataContext } from '../context/Context';
 import '../styles/styles.css'
 
 export default function TareasE (props) {
+    const {GlobalState,} = useContext(DataContext);
     return (
         <div className='w100p h100p m-0 p-0'>
             <NavBar CerrarSesion={props.CerrarSesion}/>
@@ -17,26 +19,21 @@ export default function TareasE (props) {
                             <Link to="/NuevaTarea" className='NLink'>+</Link>
                             </div>
                         </div>
-                        <Card title="monitoria" 
-                        description="se llevara a cabo una monitoria de temas como, funcion cuadratica, limite y recta tangente " 
-                        fecha="22/07/22" hora="8:00am" 
-                        autor="francisco(monitor)"prioridad="Alta"/>
-                       <Card title="monitoria" 
-                        description="se llevara a cabo una monitoria de temas como, funcion cuadratica, limite y recta tangente ................................................................ asdededede asdededed" 
-                        fecha="22/07/22" hora="8:00am" 
-                        autor="francisco(monitor)"prioridad="Media"/>
-                        <Card title="monitoria" 
-                        description="se llevara a cabo una monitoria de temas como, funcion cuadratica, limite y recta tangente" 
-                        fecha="22/07/22" hora="8:00am" 
-                        autor="francisco(monitor)"prioridad="Baja"/>
-                        <Card title="monitoria" 
-                        description="se llevara a cabo una monitoria de temas como, funcion cuadratica, limite y recta tangente " 
-                        fecha="22/07/22" hora="8:00am" 
-                        autor="francisco(monitor)"prioridad="Media"/>
-                        <Card title="monitoria" 
-                        description="se llevara a cabo una monitoria de temas como, funcion cuadratica, limite y recta tangente" 
-                        fecha="22/07/22" hora="8:00am" 
-                        autor="francisco(monitor)"prioridad="Baja"/>
+                       
+                        {
+                                GlobalState.user.notas.map((item)=>{
+                                    return(
+                                        <Card id={item.id}
+                                        title={item.titulo} 
+                                        description={item.descripcion} 
+                                        fecha={
+                                        item.fecha.slice(8,10)+
+                                        "/"+item.fecha.slice(5,7)+
+                                        "/"+item.fecha.slice(0,4)} hora={item.fecha.slice(11,16)} 
+                                        autor={item.autor}  prioridad={item.prioridad}/>
+                                    )
+                                })
+                        }
 
                     </div>
                     <div className='d-flex justify-content-center align-items-center text-light w100p position-sticky' style={{bottom:0}}>

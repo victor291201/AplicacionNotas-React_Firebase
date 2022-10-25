@@ -1,12 +1,16 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import '../styles/styles.css'
+import { DataContext } from '../context/Context';
+import { Link } from 'react-router-dom';
+
 
 export default function DropDown (props) {
+    const {EliminarNota} = useContext(DataContext);
     return (
         <ul class="dropdown-menuP">
-            <li><a class="dropdown-itemP pt-2" href="#">Editar</a></li>
-            <li><a class="dropdown-itemP" href="#">Eliminar</a></li>
-            <li><a class="dropdown-itemP pb-2" href="#">Compartir</a></li>
+            <li><Link  className="dropdown-itemP CPointer pt-1" to={"/Tarea/"+props.id.toString()}>Editar</Link></li>
+            <li><a class="dropdown-itemP CPointer" onClick={()=>EliminarNota(props.id)}>Eliminar</a></li>
+            <li><a class="dropdown-itemP CPointer pb-1" href="#">Compartir</a></li>
         </ul>
     );
     

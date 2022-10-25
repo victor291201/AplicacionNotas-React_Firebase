@@ -19,7 +19,7 @@ class Card extends Component{
   	if(this.props.prioridad === "Alta"){
 	    return(
 	    	<div className="card d-inline-block"style={{height:"100%"}}>
-				{this.state.view?<DropDown/>:null}
+				{this.state.view?<DropDown id={this.props.id}/>:null}
 				<div className="card-body">
 					<i class="bi bi-three-dots d-flex float-right mt-n2 CPointer" onClick={this.toggle}></i>
 					<h5 className="card-title">{this.props.title}</h5>
@@ -36,7 +36,7 @@ class Card extends Component{
   	if(this.props.prioridad === "Media"){
 	    return(
 	    	<div className="card d-inline-block"style={{height:"100%"}}>
-				{this.state.view?<DropDown/>:null}
+				{this.state.view?<DropDown id={this.props.id}/>:null}
 				<div className="card-body">
 					<i class="bi bi-three-dots d-flex float-right mt-n2 CPointer" onClick={this.toggle}></i>
 					<h5 className="card-title">{this.props.title}</h5>
@@ -53,7 +53,7 @@ class Card extends Component{
   	else{
 	    return(
 	    	<div className="card d-inline-block"style={{height:"100%"}}>
-				{this.state.view?<DropDown/>:null}
+				{this.state.view?<DropDown id={this.props.id}/>:null}
 				<div className="card-body">
 					<i class="bi bi-three-dots d-flex float-right mt-n2 CPointer" onClick={this.toggle}></i>
 					<h5 className="card-title">{this.props.title}</h5>

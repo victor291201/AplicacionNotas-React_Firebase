@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import { Link } from 'react-router-dom';
+import React,{useState,useContext} from 'react';
+import { DataContext } from '../context/Context';
 import '../styles/styles.css'
 
 export default function Registrarse (props) {
@@ -8,11 +8,12 @@ export default function Registrarse (props) {
         setObj({...Obj, [e.target.name]: e.target.value.toString()});
         console.log(Obj)
     }
+    const {Registrarse} = useContext(DataContext);
     function verificacion(){
         if(Obj.contraseña === Obj.contraseña2){
             if(Obj.correo.includes("@")){
                 if(Obj.codigo.length == 10){
-                    props.Registrarse(Obj);
+                    Registrarse(Obj);
                 }
                 else{
                     alert("el codigo no cumple con el formato")

@@ -2,19 +2,30 @@ import React,{Component} from 'react';
 import NavBar from '../componentes/NavBar';
 import Forms from '../componentes/Forms';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/styles.css'
 
 class GestionarGruposM extends Component{
     constructor(props) {
 		super(props);
-		this.state = {view:false};
+		this.state = {view:false,grupos:[]};
 		this.toggle = this.toggle.bind(this);
 	}
 	toggle(){
 		this.setState(PrevState =>({
-			view:!PrevState.view
+			view:!PrevState.view,grupos:PrevState.grupos
 		}));
 	}
+    async componentDidMount(){
+        await axios.get("https://notasapi20221007143024.azurewebsites.net/api/Grupo/usuarios/"+"2"+"/grupos").then((response)=>{
+            console.log(response.data.data)
+            this.setState(PrevState =>({
+                ...PrevState,grupos:response.data.data
+            }));
+            console.log(this.state.grupos)
+        })
+      
+    }
     render(){
         return (
             <div className="h100p w100p p-0 m-0">
@@ -32,18 +43,11 @@ class GestionarGruposM extends Component{
                                     </div>
                                 </div>
                                 <ul class="list-group list-group-flush my-3 w100p OverY">
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right CPointer" onClick={this.toggle}></i></li>
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right"></i></li>
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right"></i></li>
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right"></i></li>
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right"></i></li>
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right"></i></li>
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right"></i></li>
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right"></i></li>
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right"></i></li>
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right"></i></li>
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right"></i></li>
-                                    <li class="list-group-item">A second item<i class="bi bi-person-plus-fill text-success float-right"></i></li>
+                                {
+                                    this.state.grupos.map((elm=>{
+                                        return(<li class="list-group-item">{elm.nombre}<i class="bi bi-person-plus-fill text-success float-right CPointer" onClick={this.toggle}></i></li>)
+                                    }))
+                                }
                                 </ul>
                             </div>
                             <div className=" d-flex flex-column align-items-center justify-content-start" style={{width:"49%",height:550}}>
