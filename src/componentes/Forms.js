@@ -1,9 +1,14 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/styles.css'
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default function Forms (props) {
+    const [Id, setId] = useState("");
+    const Change = (e) => {
+        console.log(e.target.value)
+        setId(e.target.value.toString());
+    }
     if(props.tipo === "estudiante"){
         return (
             <div className="container-fluid Form" style={{height:"100vh"}}>
@@ -16,9 +21,11 @@ export default function Forms (props) {
                                     <h5 className="card-title mb-1"  style={{width:"100%",textAlign:"center"}}>Añadir grupo</h5>
                                 </div>
                                 <div className='my-3 d-flex flex-column justify-content-around align-items-center' style={{width:300,height:120}}>
-                                    <input type="email" placeholder='Insertar codigo del estudiante' class="form-control"></input>
+                                    <input type="email" value={Id} placeholder='Insertar codigo del grupo' 
+                                    onChange={(e)=>Change(e)} 
+                                    class="form-control"/>
                                 </div>
-                                <button className='btn btn-danger mt-1'><Link to="/" className='NLink'>Añadir</Link></button>
+                                <button className='btn btn-danger mt-1' onClick={()=>props.send(Id)}>Añadir</button>
                             </div>
                         </div>
                     </div>

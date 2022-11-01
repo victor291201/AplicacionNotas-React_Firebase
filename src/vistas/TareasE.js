@@ -23,7 +23,7 @@ export default function TareasE (props) {
                         {
                                 GlobalState.user.notas.map((item)=>{
                                     return(
-                                        <Card id={item.id}
+                                        <Card key={item.id.toString()}id={item.id}
                                         title={item.titulo} 
                                         description={item.descripcion} 
                                         fecha={

@@ -4,20 +4,24 @@ import Forms from '../componentes/Forms';
 import { Link } from 'react-router-dom';
 import '../styles/styles.css'
 import axios from 'axios';
+import { DataContext } from '../context/Context';
 
 class GestionarGruposE extends Component{
     constructor(props) {
 		super(props);
 		this.state = {view:false,grupos:[]};
 		this.toggle = this.toggle.bind(this);
+		this.AgregarGrupo = this.AgregarGrupo.bind(this);
 	}
+    static contextType = DataContext;
 	toggle(){
 		this.setState(PrevState =>({
 			view:!PrevState.view,grupos:PrevState.grupos
 		}));
 	}
     async componentDidMount(){
-        await axios.get("https://notasapi20221007143024.azurewebsites.net/api/Grupo/usuarios/"+"3"+"/grupos").then((response)=>{
+        console.log(this.context.GlobalState)
+        await axios.get("https://notasapi20221007143024.azurewebsites.net/api/Grupo/usuarios/"+this.context.GlobalState.user.id+"/grupos").then((response)=>{
             console.log(response.data.data)
             this.setState(PrevState =>({
                 ...PrevState,grupos:response.data.data
@@ -25,6 +29,16 @@ class GestionarGruposE extends Component{
             console.log(this.state.grupos)
         })
       
+    }
+    async AgregarGrupo(id){
+        var grp = this.state.grupos
+        console.log(this.context.GlobalState)
+        await axios.post("https://notasapi20221007143024.azurewebsites.net/api/Grupo/"+id+"/"+this.context.GlobalState.user.id,{}).then((response)=>{
+            grp.push(response.data.data.grupoDTO)
+            this.setState(PrevState =>({
+                view:false,grupos:grp
+            }));
+        })
     }
     render(){
         return (
@@ -45,7 +59,7 @@ class GestionarGruposE extends Component{
                             <ul class="list-group list-group-flush my-3 w100p OverY">
                             {
                                 this.state.grupos.map((elm=>{
-                                    return(<li class="list-group-item">{elm.nombre} <i class="bi bi-box-arrow-left text-danger float-right CPointer"></i></li>)
+                                    return(<li class="list-group-item" key={elm.id.toString()}>{elm.nombre} <i class="bi bi-box-arrow-left text-danger float-right CPointer"></i></li>)
                                 }))
                             }
                             </ul>
@@ -56,7 +70,7 @@ class GestionarGruposE extends Component{
                     </div>
                 </div>
             </div>
-                    {this.state.view?<Forms toggle={this.toggle} tipo="estudiante" />:null}
+                    {this.state.view?<Forms toggle={this.toggle} send={this.AgregarGrupo}tipo="estudiante" />:null}
         </div>
     );
     }

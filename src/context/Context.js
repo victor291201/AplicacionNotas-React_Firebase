@@ -7,7 +7,8 @@ export class DataProvider extends Component{
     constructor(args){
       super(args);
       this.state = {
-        user:{notas:[]}
+        user:{notas:[]},
+        isLoad:false
       }
       this.IniciarSesionA = this.IniciarSesionA.bind(this);
       this.IniciarSesion = this.IniciarSesion.bind(this);
@@ -22,6 +23,9 @@ componentDidMount(){
   }
 }
 async Registrarse(user){
+  this.setState((PrevState)=>({
+    ...PrevState,isLoad:true
+  }))
   console.log(user)
   await axios.post('https://notasapi20221007143024.azurewebsites.net/api/Usuario/register',user).then((response)=>{
     console.log(response)
@@ -43,8 +47,14 @@ async Registrarse(user){
       console.log('Error', error.message);
     }
 })
+this.setState((PrevState)=>({
+  ...PrevState,isLoad:false
+}))
 }
   async IniciarSesion(user){
+    this.setState((PrevState)=>({
+      ...PrevState,isLoad:true
+    }))
   console.log(user)
   await axios.post('https://notasapi20221007143024.azurewebsites.net/api/Usuario/login',user).then( async (response)=>{
     window.localStorage.setItem("user", JSON.stringify({name:response.data.data.codigo.toString(),
@@ -54,7 +64,7 @@ async Registrarse(user){
           console.log(response.data.data)
           usr = {...usr,notas:response.data.data}
           console.log(usr)
-          this.setState(PrevState =>({
+          this.setState((PrevState) =>({
               user:usr
           }));
       })
@@ -75,17 +85,22 @@ async Registrarse(user){
         console.log('Error', error.message);
       }
   })
-    
+  this.setState((PrevState)=>({
+    ...PrevState,isLoad:false
+  }))
   }
 async IniciarSesionA(user){
+  this.setState((PrevState)=>({
+    ...PrevState,isLoad:true
+  }))
   await axios.post('https://notasapi20221007143024.azurewebsites.net/api/Usuario/login',user).then(async (response)=>{
         var usr = response.data.data
         await axios.get("https://notasapi20221007143024.azurewebsites.net/api/Recordatorio/"+usr.id.toString()).then((response)=>{
             usr = {...usr,notas:response.data.data}
             console.log(usr)
-            this.setState({
+            this.setState((PrevState)=>({
                 user:usr
-            });
+            }));
         })
   }).catch(function (error){
       if (error.response) {
@@ -104,17 +119,27 @@ async IniciarSesionA(user){
         console.log('Error', error.message);
       }
   })
+  this.setState((PrevState)=>({
+    ...PrevState,isLoad:false
+  }))
   }
 CerrarSesion(){
+  this.setState((PrevState)=>({
+    ...PrevState,isLoad:true
+  }))
   window.localStorage.removeItem('user')
-  this.setState({
-    user:{}
-  })
+  this.setState((PrevState)=>({
+    user:{},isLoad:false
+  }))
 }
 CrearNota=async(Obj)=> {
-      console.log(this.state)
-      var nts = this.state.user.notas
-  await axios.post('https://notasapi20221007143024.azurewebsites.net/api/Recordatorio?idUsuario='+"3",{titulo:Obj.titulo,
+  
+  this.setState((PrevState)=>({
+    ...PrevState,isLoad:true
+  }))
+  console.log(this.state)
+  var nts = this.state.user.notas
+  await axios.post('https://notasapi20221007143024.azurewebsites.net/api/Recordatorio?idUsuario='+this.state.user.id,{titulo:Obj.titulo,
   descripcion:Obj.descripcion,prioridad:Obj.prioridad,fecha:Obj.fecha+"T"+Obj.hora+":37.775Z"}).then((response)=>{
     if(response.data.succeeded){
       nts.push(Obj)
@@ -125,8 +150,15 @@ CrearNota=async(Obj)=> {
       console.log("actualice el estado")
     }
 })
+
+this.setState((PrevState)=>({
+  ...PrevState,isLoad:false
+}))
 }
 ActualizarNota=async(Obj,id)=> {
+  this.setState((PrevState)=>({
+    ...PrevState,isLoad:true
+  }))
       console.log(this.state)
       var nts = this.state.user.notas
       await axios.put('https://notasapi20221007143024.azurewebsites.net/api/Recordatorio',{titulo:Obj.titulo,
@@ -141,8 +173,14 @@ ActualizarNota=async(Obj,id)=> {
       console.log("actualice la nota")
     }
 })
+this.setState((PrevState)=>({
+  ...PrevState,isLoad:false
+}))
 }
 EliminarNota=async(id)=>{
+  this.setState((PrevState)=>({
+    ...PrevState,isLoad:true
+  }))
     await axios.delete("https://notasapi20221007143024.azurewebsites.net/api/Recordatorio/"+id.toString()).then((response)=>{
         console.log(response.data.succeeded)
         if(response.data.succeeded){
@@ -159,6 +197,9 @@ EliminarNota=async(id)=>{
             console.log("no se pudo")
         }
     })
+  this.setState((PrevState)=>({
+    ...PrevState,isLoad:false
+  }))
 }
     render(){
         const {state,IniciarSesion,IniciarSesionA,CerrarSesion,Registrarse,CrearNota,EliminarNota,ActualizarNota} = this

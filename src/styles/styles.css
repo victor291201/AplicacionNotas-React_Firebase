@@ -79,3 +79,47 @@
 .Border{
     border: 1px solid #BDBDBD;
 }
+.ct{
+    margin: 0px;
+    width: 33.3%;
+    height: 33.3%;
+    min-width: 250px;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .pt2-9{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    clip-path: polygon(100% 50%, 50% 50%, 50% 0, 100% 0);
+    z-index: 4;
+    animation: 1.2s rotacion1 infinite  linear;
+  }
+  .crcl1-9{
+    background: linear-gradient(0deg, red 0%, red 26%, rgba(144,56,5,0) 100%);
+    width: 100%;
+    height: 100%;
+    opacity: 1.5;
+    clip-path: circle(50% at 50% 50%);
+  }
+  .crcl2-9{
+    background: #343a40;
+    width: 150px;
+    height: 150px;
+    clip-path: circle(43.6% at 50% 50%);
+    position:absolute;
+    z-index: 5;
+  }
+.bg-fd{
+    background: #343a40;
+}
+@keyframes rotacion1 {
+    from{
+      transform: rotate(0deg);
+    }
+    to{
+      transform: rotate(360deg);
+    }
+  }
