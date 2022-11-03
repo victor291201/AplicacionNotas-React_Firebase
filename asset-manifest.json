@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/victor291201/AplicacionNotas-React_Firebase/static/css/main.0041930a.css",
-    "main.js": "/victor291201/AplicacionNotas-React_Firebase/static/js/main.f3f81886.js",
+    "main.js": "/victor291201/AplicacionNotas-React_Firebase/static/js/main.082925ab.js",
     "static/media/bootstrap-icons.woff?": "/victor291201/AplicacionNotas-React_Firebase/static/media/bootstrap-icons.e559bf06bc84fd9525e6.woff",
     "static/media/bootstrap-icons.woff2?": "/victor291201/AplicacionNotas-React_Firebase/static/media/bootstrap-icons.ea98e12d2d58747f9fc5.woff2",
     "index.html": "/victor291201/AplicacionNotas-React_Firebase/index.html",
     "main.0041930a.css.map": "/victor291201/AplicacionNotas-React_Firebase/static/css/main.0041930a.css.map",
-    "main.f3f81886.js.map": "/victor291201/AplicacionNotas-React_Firebase/static/js/main.f3f81886.js.map"
+    "main.082925ab.js.map": "/victor291201/AplicacionNotas-React_Firebase/static/js/main.082925ab.js.map"
   },
   "entrypoints": [
     "static/css/main.0041930a.css",
-    "static/js/main.f3f81886.js"
+    "static/js/main.082925ab.js"
   ]
 }
