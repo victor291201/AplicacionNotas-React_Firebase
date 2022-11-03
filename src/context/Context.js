@@ -16,6 +16,8 @@ export class DataProvider extends Component{
       this.Registrarse = this.Registrarse.bind(this);
       this.EliminarNota = this.EliminarNota.bind(this);
       this.ActualizarNota = this.ActualizarNota.bind(this);
+      this.CrearNota = this.CrearNota.bind(this);
+      this.CrearNotaM = this.CrearNotaM.bind(this);
 };
 componentDidMount(){
   if(window.localStorage.getItem("user") !== undefined){
@@ -60,14 +62,17 @@ this.setState((PrevState)=>({
     window.localStorage.setItem("user", JSON.stringify({name:response.data.data.codigo.toString(),
       password:user.password}));
       var usr = response.data.data
-      await axios.get("https://notasapi20221007143024.azurewebsites.net/api/Recordatorio/"+usr.id).then((response)=>{
-          console.log(response.data.data)
-          usr = {...usr,notas:response.data.data}
-          console.log(usr)
-          this.setState((PrevState) =>({
-              user:usr
-          }));
-      })
+      console.log(usr)
+      this.setState((PrevState)=>({
+        user:{
+          codigo:usr.codigo,
+          correo:usr.correo,
+          id:usr.id,
+          nombre:usr.nombre,
+          notas:usr.recordatorios,
+          rol:usr.rol
+        }
+    }));
   }).catch(function (error){
       if (error.response) {
         alert("credenciales incorrectas")
@@ -95,13 +100,17 @@ async IniciarSesionA(user){
   }))
   await axios.post('https://notasapi20221007143024.azurewebsites.net/api/Usuario/login',user).then(async (response)=>{
         var usr = response.data.data
-        await axios.get("https://notasapi20221007143024.azurewebsites.net/api/Recordatorio/"+usr.id.toString()).then((response)=>{
-            usr = {...usr,notas:response.data.data}
-            console.log(usr)
-            this.setState((PrevState)=>({
-                user:usr
-            }));
-        })
+        console.log(usr)
+        this.setState((PrevState)=>({
+            user:{
+              codigo:usr.codigo,
+              correo:usr.correo,
+              id:usr.id,
+              nombre:usr.nombre,
+              notas:usr.recordatorios,
+              rol:usr.rol
+            }
+        }));
   }).catch(function (error){
       if (error.response) {
         if(window.localStorage.getItem("user") !== null){
@@ -201,10 +210,55 @@ EliminarNota=async(id)=>{
     ...PrevState,isLoad:false
   }))
 }
+CrearNotaM=async(Obj)=> {
+  this.setState((PrevState)=>({
+    ...PrevState,isLoad:true
+  }))
+  console.log(this.state)
+  var nts = this.state.user.notas
+  console.log(Obj)
+  var var1 = {
+    idGrupos:Obj.grupos,
+    idMonitor:this.state.user.id,
+    recordatorio:{
+      titulo:Obj.titulo,
+      descripcion:Obj.descripcion,
+      prioridad:Obj.prioridad,
+      fecha:Obj.fecha+"T"+Obj.hora+":37.775Z"
+    }}
+    console.log(var1)
+  await axios.post('https://notasapi20221007143024.azurewebsites.net/api/Recordatorio/grupos',var1).then((response)=>{
+    if(response.data.succeeded){
+      console.log("actualice el estado")
+    }
+})
+
+this.setState((PrevState)=>({
+  ...PrevState,isLoad:false
+}))
+}
     render(){
-        const {state,IniciarSesion,IniciarSesionA,CerrarSesion,Registrarse,CrearNota,EliminarNota,ActualizarNota} = this
+        const {state,
+          IniciarSesion,
+          IniciarSesionA,
+          CerrarSesion,
+          Registrarse,
+          CrearNota,
+          EliminarNota,
+          ActualizarNota,
+          CrearNotaM} = this
         return(
-            <DataContext.Provider value={{GlobalState:state,IniciarSesionA,IniciarSesion,CerrarSesion,Registrarse,CrearNota,EliminarNota,ActualizarNota}}>
+            <DataContext.Provider value={{
+                GlobalState:state,
+                IniciarSesionA,
+                IniciarSesion,
+                CerrarSesion,
+                Registrarse,
+                CrearNota,
+                EliminarNota,
+                ActualizarNota,
+                CrearNotaM
+              }}>
                 {this.props.children}
             </DataContext.Provider>
         )

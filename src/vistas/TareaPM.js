@@ -1,34 +1,49 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect,useContext} from 'react';
 import NavBar from '../componentes/NavBar';
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import { DataContext } from '../context/Context';
 import '../styles/styles.css'
+import { Button } from 'bootstrap';
 
 export default function TareaPM (props) {
-    const [Obj, setObj] = useState({grupos:[
-        ["G1 calculo",false],
-        ["G2 calculo",false],
-        ["G3 calculo",false],
-        ["G4 calculo",false],
-        ["G5 calculo",false],
-        ["G6 calculo",false],
-        ["G7 calculo",false],
-        ["G8 calculo",false],
-        ["G9 calculo",false],
-        ["G10 calculo",false],
-        ["G11 calculo",false]]
+    const [Obj, setObj] = useState({grupos:[],gruposc:[]
     });
+    const {GlobalState,CrearNotaM} = useContext(DataContext);
+    useEffect(() => {
+        axios.get("https://notasapi20221007143024.azurewebsites.net/api/Grupo/usuarios/"+GlobalState.user.id+"/grupos").then((response)=>{
+            response.data.data.splice(0,1)
+            setObj({
+                grupos:response.data.data,
+                gruposc:Obj.gruposc
+            })
+            console.log(Obj)
+        })
+      }, []);
+    const CGrupos = (e) => {
+        console.log(Obj)
+        var posg= Obj.grupos[Obj.grupos.map((elm)=>elm.nombre).indexOf(e.target.name)].id
+        var est = Obj.gruposc.indexOf(posg)
+        if(est === -1){
+            console.log(posg)
+            var lobj = Obj.gruposc
+            lobj.push(posg)
+            setObj({
+                ...Obj,
+                gruposc:lobj
+            })
+        }
+        else{
+            setObj({
+                ...Obj,
+                gruposc:Obj.gruposc.splice(est, 1)
+            })
+        }
+        console.log(Obj)
+    }
     const Change = (e) => {
         setObj({...Obj, [e.target.name]: e.target.value.toString()});
-    }
-    const grupos = (e)=>{
-        var grup = Obj.grupos;
-        grup.forEach(element => {
-            if(element[0] === e.target.name){
-                element[1]= !element[1];
-            }
-        });
-        console.log(Obj.grupos)
-        setObj({...Obj, grupos:grup});
+        console.log(Obj)
     }
     return (
         <div className='h100p w100p p-0 m-0'>
@@ -43,7 +58,7 @@ export default function TareaPM (props) {
                                     <input type="email" placeholder='Titulo' class="form-control"
                                     name="titulo" value={Obj.titulo} onChange={(e)=>Change(e)} ></input>
                                     <textarea className="form-control" placeholder="Descripcion" id="floatingTextarea2"
-                                    name="descipcion" value={Obj.descripcion} onChange={(e)=>Change(e)}  style={{height:100}}></textarea>
+                                    name="descripcion" value={Obj.descripcion} onChange={(e)=>Change(e)}  style={{height:100}}></textarea>
                                     <select className="form-control" placeholder='Prioridad' id="prioridad"
                                     name="prioridad" value={Obj.prioridad} onChange={(e)=>Change(e)} >
                                         <option disabled selected>Prioridad</option>
@@ -62,10 +77,10 @@ export default function TareaPM (props) {
                                         {Obj.grupos.map((item)=>{
                                             return(
                                                 <div className="form-check d-flex align-items-center">
-                                                    <input className="form-check-input" type="checkbox" checked={item[1]}
-                                                    name={item[0]} id="defaultCheck1" onChange={(e)=>grupos(e)}/>
+                                                    <input className="form-check-input" type="checkbox"
+                                                    name={item.nombre} id="defaultCheck1" onChange={(e)=>CGrupos(e)}/>
                                                     <label className="form-check-label" for="defaultCheck1">
-                                                        {item[0]}
+                                                        {item.nombre}
                                                     </label>
                                                 </div>
                                             )
@@ -73,8 +88,17 @@ export default function TareaPM (props) {
                                         )}
                                     </div>
                                 </div>
-                                <button className='btn btn-danger mt-3 mb-n1'>
-                                    <Link to="/" className='NLink'>Crear</Link>
+                                <button className='btn btn-danger mt-3 mb-n1' onClick={()=>{
+                                    CrearNotaM({
+                                        grupos:Obj.gruposc,
+                                        titulo:Obj.titulo,
+                                        descripcion:Obj.descripcion,
+                                        prioridad:Obj.prioridad,
+                                        fecha:Obj.fecha,
+                                        hora:Obj.hora
+                                    })
+                                }}>
+                                    Crear
                                 </button>
                             </div>
                         </div>

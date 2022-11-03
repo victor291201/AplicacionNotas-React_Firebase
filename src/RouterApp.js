@@ -45,6 +45,7 @@ export default function RouterApp(props){
     if(GlobalState.isLoad){
       return(
         <BrowserRouter>
+          <Loader/>
           <Routes>
             <Route path='/' element={<TareasE/>}/>
             <Route path='/Tareas' element={<TareaE/>}/>
@@ -53,7 +54,6 @@ export default function RouterApp(props){
             <Route path='/GestionarGrupos' element={<GestionarGruposE/>}/>
               <Route path="*" element={<Error404/>}/>
           </Routes>
-          <Loader/>
         </BrowserRouter>
       )}
       return(
