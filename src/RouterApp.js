@@ -31,7 +31,7 @@ export default function RouterApp(props){
       </BrowserRouter>
     )}
     return(
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path='/' element={<IniciarSesion/>}/>
           <Route path='/Registrarse' element={<Registrarse/>}/>
@@ -44,7 +44,7 @@ export default function RouterApp(props){
     if(GlobalState.user.rol==="Estudiante"){
     if(GlobalState.isLoad){
       return(
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Loader/>
           <Routes>
             <Route path='/' element={<TareasE/>}/>
@@ -57,7 +57,7 @@ export default function RouterApp(props){
         </BrowserRouter>
       )}
       return(
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Routes>
             <Route path='/' element={<TareasE/>}/>
             <Route path='/Tareas' element={<TareaE/>}/>
@@ -72,7 +72,7 @@ export default function RouterApp(props){
     else{
       if(GlobalState.isLoad){
         return(
-          <BrowserRouter>
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Loader/>
             <Routes>
               <Route path='/' element={<TareasPM/>}/>
@@ -85,7 +85,7 @@ export default function RouterApp(props){
         )
       }
       return(
-          <BrowserRouter>
+          <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Routes>
               <Route path='/' element={<TareasPM/>}/>
               <Route path='/Tarea:id' element={<TareaPM/>}/>
