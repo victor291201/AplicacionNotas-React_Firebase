@@ -21,7 +21,7 @@ export default function RouterApp(props){
     
     if(GlobalState.isLoad){
     return(
-      <BrowserRouter>
+      <BrowserRouter  basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path='/' element={<IniciarSesion/>}/>
           <Route path='/Registrarse' element={<Registrarse/>}/>
