@@ -10,15 +10,18 @@ export default function TareaPM (props) {
     const [Obj, setObj] = useState({grupos:[],gruposc:[]
     });
     const {GlobalState,CrearNotaM} = useContext(DataContext);
-    useEffect(() => {
-        axios.get("https://notasapi20221007143024.azurewebsites.net/api/Grupo/usuarios/"+GlobalState.user.id+"/grupos").then((response)=>{
-            response.data.data.splice(0,1)
+    const GetData = async () =>{
+        await axios.get("https://notasapi20221007143024.azurewebsites.net/api/Grupo/usuarios/4/grupos").then((response)=>{
+            
             setObj({
                 grupos:response.data.data,
                 gruposc:Obj.gruposc
             })
-            console.log(Obj)
+            console.log(response.data.data)
         })
+    }
+    useEffect(() => {
+         GetData()
       }, []);
     const CGrupos = (e) => {
         console.log(Obj)

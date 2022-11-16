@@ -12,6 +12,7 @@ class GestionarGruposE extends Component{
 		this.state = {view:false,grupos:[]};
 		this.toggle = this.toggle.bind(this);
 		this.AgregarGrupo = this.AgregarGrupo.bind(this);
+		this.EliminarGrupo = this.EliminarGrupo.bind(this);
 	}
     static contextType = DataContext;
 	toggle(){
@@ -40,6 +41,17 @@ class GestionarGruposE extends Component{
             }));
         })
     }
+    async EliminarGrupo(id){
+        var grp = this.state.grupos
+        console.log(this.context.GlobalState)
+        await axios.delete("https://notasapi20221007143024.azurewebsites.net/api/Grupo/"+id+"/usuarios/"+this.context.GlobalState.user.id).then((response)=>{
+            var ind = grp.indexOf(id);
+            grp.splice(ind,1);
+            this.setState(PrevState =>({
+                view:false,grupos:grp
+            }));
+        })
+    }
     render(){
         return (
         <div  className="w100p h100p p-0 m-0">
@@ -59,7 +71,7 @@ class GestionarGruposE extends Component{
                             <ul class="list-group list-group-flush my-3 w100p OverY">
                             {
                                 this.state.grupos.map((elm=>{
-                                    return(<li class="list-group-item" key={elm.id.toString()}>{elm.nombre} <i class="bi bi-box-arrow-left text-danger float-right CPointer"></i></li>)
+                                    return(<li class="list-group-item" key={elm.id.toString()}>{elm.nombre} <i class="bi bi-box-arrow-left text-danger float-right CPointer" onClick={()=>{this.EliminarGrupo(elm.id)}}></i></li>)
                                 }))
                             }
                             </ul>

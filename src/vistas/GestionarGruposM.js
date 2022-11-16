@@ -8,9 +8,11 @@ import '../styles/styles.css'
 class GestionarGruposM extends Component{
     constructor(props) {
 		super(props);
-		this.state = {view:false,estudiantes:[],grupos:[]};
+		this.state = {view:false,estudiantes:[],grupoC:null,grupoId:null,grupos:[]};
 		this.toggle = this.toggle.bind(this);
 		this.Selected = this.Selected.bind(this);
+		this.AgregarGrupo = this.AgregarGrupo.bind(this);
+		this.EliminarGrupo = this.EliminarGrupo.bind(this);
 	}
 	toggle(){
 		this.setState(PrevState =>({
@@ -26,13 +28,32 @@ class GestionarGruposM extends Component{
             console.log(this.state.grupos)
         }) 
     }
-    async Selected(id){
-        await axios.get("https://notasapi20221007143024.azurewebsites.net/api/Grupo/usuarios/"+"2"+"/grupos").then((response)=>{
+    async Selected(id,codigo){
+        await axios.get("https://notasapi20221007143024.azurewebsites.net/api/Grupo/usuarios/"+id).then((response)=>{
             console.log(response.data.data)
             this.setState(PrevState =>({
-                ...PrevState,estudiantes:response.data.data
+                ...PrevState,estudiantes:response.data.data,grupoC:codigo,grupoId:id
             }));
-            console.log(this.state.estudiantes)
+            console.log(this.state)
+        })
+    }
+    async AgregarGrupo(id){
+        await axios.post("https://notasapi20221007143024.azurewebsites.net/api/Grupo/"+this.state.grupoC.toString()+"/"+id.toString(),{}).then((response)=>{
+            this.setState(PrevState =>({
+                view:false
+            }));
+            console.log("se agrego el estudiante con exito")
+        })
+    }
+    async EliminarGrupo(id){
+        var grp = this.state.estudiantes
+        console.log(this.context.GlobalState)
+        await axios.delete("https://notasapi20221007143024.azurewebsites.net/api/Grupo/"+this.state.grupoId+"/usuarios/"+id).then((response)=>{
+            var ind = this.state.estudiantes.map((elm)=>elm.id).indexOf(id);
+            grp.splice(ind,1);
+            this.setState(PrevState =>({
+                view:false,estudiantes:grp
+            }));
         })
     }
     render(){
@@ -54,7 +75,7 @@ class GestionarGruposM extends Component{
                                 <ul class="list-group list-group-flush my-3 w100p OverY">
                                 {
                                     this.state.grupos.map((elm=>{
-                                        return(<li class="list-group-item" onClick={()=>this.Selected(elm.id)}>{elm.nombre}<i class="bi bi-person-plus-fill text-success float-right CPointer" onClick={this.toggle}></i></li>)
+                                        return(<li class="list-group-item CPointer" onClick={()=>this.Selected(elm.id,elm.codigo)}>{elm.nombre}<i class="bi bi-person-plus-fill text-success float-right CPointer" onClick={this.toggle}></i></li>)
                                     }))
                                 }
                                 </ul>
@@ -71,7 +92,7 @@ class GestionarGruposM extends Component{
                                 <ul class="list-group list-group-flush my-3 w100p OverY">
                                 {
                                     this.state.estudiantes.map((elm=>{
-                                        return(<li class="list-group-item">{elm.nombre} <i class="bi bi-person-x-fill text-danger float-right"></i></li>)
+                                        return(<li class="list-group-item">{elm.nombre} <i class="bi bi-person-x-fill text-danger float-right CPointer" onClick={()=>{this.EliminarGrupo(elm.id)}}></i></li>)
                                     }))
                                 }
                                 </ul>
@@ -79,7 +100,7 @@ class GestionarGruposM extends Component{
                         </div>
                     </div>
                 </div>
-                    {this.state.view?<Forms toggle={this.toggle}/>:null}
+                    {this.state.view?<Forms toggle={this.toggle} send={this.AgregarGrupo}/>:null}
             </div>
         );
     }
