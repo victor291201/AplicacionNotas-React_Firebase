@@ -1,8 +1,8 @@
 import React,{useContext} from 'react';
-import Card from '../componentes/Card';
-import NavBar from '../componentes/NavBar';
+import Card from '../components/Card';
+import NavBar from '../components/NavBar';
 import { Link } from 'react-router-dom';
-import { DataContext } from '../context/Context';
+import { DataContext } from '../contexts/Context';
 import '../styles/styles.css'
 
 

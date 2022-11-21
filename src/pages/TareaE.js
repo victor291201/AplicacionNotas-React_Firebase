@@ -1,8 +1,8 @@
 import React,{useState,useContext,useEffect} from 'react';
-import NavBar from '../componentes/NavBar';
+import NavBar from '../components/NavBar';
 import { useParams } from 'react-router-dom';
 import axios from "axios";
-import { DataContext } from '../context/Context';
+import { DataContext } from '../contexts/Context';
 import '../styles/styles.css'
 
 export default function TareaE (props) {

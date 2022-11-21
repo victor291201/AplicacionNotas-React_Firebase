@@ -3,6 +3,8 @@ import axios from "axios";
 
 export const DataContext = createContext();
 
+/**general level context provider, in this document are the main functions of the system in general*/
+
 export class DataProvider extends Component{
     constructor(args){
       super(args);
@@ -155,7 +157,7 @@ CrearNota=async(Obj)=> {
       this.setState(PrevState =>({
         user : {...this.state.user,notas:nts}
       }));
-      window.location = '/'
+      window.location = '/AplicacionNotas-React_Firebase/'
       console.log("actualice el estado")
     }
 })
@@ -178,7 +180,7 @@ ActualizarNota=async(Obj,id)=> {
       this.setState(PrevState =>({
         user : {...this.state.user,notas:nts}
       }));
-      window.location = '/'
+      window.location = '/AplicacionNotas-React_Firebase/'
       console.log("actualice la nota")
     }
 })
@@ -229,6 +231,8 @@ CrearNotaM=async(Obj)=> {
     console.log(var1)
   await axios.post('https://notasapi20221007143024.azurewebsites.net/api/Recordatorio/grupos',var1).then((response)=>{
     if(response.data.succeeded){
+      
+      window.location = '/AplicacionNotas-React_Firebase/'
       console.log("actualice el estado")
     }
 })

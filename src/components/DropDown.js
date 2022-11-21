@@ -1,9 +1,9 @@
 import React,{useContext} from 'react';
 import '../styles/styles.css'
-import { DataContext } from '../context/Context';
+import { DataContext } from '../contexts/Context';
 import { Link } from 'react-router-dom';
 
-
+/**this component was created to provide a beatufull interface of the options of cards*/
 export default function DropDown (props) {
     const {EliminarNota} = useContext(DataContext);
     return (

@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
-import NavBar from '../componentes/NavBar';
-import Forms from '../componentes/Forms';
+import NavBar from '../components/NavBar';
+import Forms from '../components/Forms';
 import { Link } from 'react-router-dom';
 import '../styles/styles.css'
 import axios from 'axios';
-import { DataContext } from '../context/Context';
+import { DataContext } from '../contexts/Context';
 
 class GestionarGruposE extends Component{
     constructor(props) {
@@ -39,6 +39,7 @@ class GestionarGruposE extends Component{
             this.setState(PrevState =>({
                 view:false,grupos:grp
             }));
+            window.location = '/AplicacionNotas-React_Firebase/GestionarGrupos'
         })
     }
     async EliminarGrupo(id){
@@ -50,6 +51,7 @@ class GestionarGruposE extends Component{
             this.setState(PrevState =>({
                 view:false,grupos:grp
             }));
+            window.location = '/AplicacionNotas-React_Firebase/GestionarGrupos'
         })
     }
     render(){

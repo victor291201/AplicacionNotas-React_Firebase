@@ -1,9 +1,9 @@
 import React,{useState,useContext} from 'react';
-import NavBar from '../componentes/NavBar';
+import NavBar from '../components/NavBar';
 import { Link } from 'react-router-dom';
-import Card from '../componentes/Card';
-import DropDown from '../componentes/DropDown';
-import { DataContext } from '../context/Context';
+import Card from '../components/Card';
+import DropDown from '../components/DropDown';
+import { DataContext } from '../contexts/Context';
 import '../styles/styles.css'
 
 export default function TareasE (props) {

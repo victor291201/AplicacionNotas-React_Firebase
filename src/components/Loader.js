@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/styles.css'
 
+/**this is my favorite component, and it serves to know how be charge the data*/
 
 export default function Loader (props) {
     return (

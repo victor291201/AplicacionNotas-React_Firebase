@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/styles.css'
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+/**this component was created with the function of providing a kind of input to manage sensitive data*/
 export default function Forms (props) {
     const [Id, setId] = useState("");
     const Change = (e) => {
@@ -44,7 +45,7 @@ export default function Forms (props) {
                                 <h5 className="card-title mb-1"  style={{width:"100%",textAlign:"center"}}>Añadir estudiante</h5>
                             </div>
                             <div className='my-3 d-flex flex-column justify-content-around align-items-center' style={{width:300,height:120}}>
-                                <input type="email" placeholder='Insertar codigo del estudiante' class="form-control"
+                                <input type="email" placeholder='Insertar el id del estudiante' class="form-control"
                                 value={Id} onChange={(e)=>Change(e)} ></input>
                             </div>
                                 <button className='btn btn-danger mt-1' onClick={()=>props.send(Id)}>Añadir</button>

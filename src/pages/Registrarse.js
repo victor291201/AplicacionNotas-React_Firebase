@@ -1,5 +1,5 @@
 import React,{useState,useContext} from 'react';
-import { DataContext } from '../context/Context';
+import { DataContext } from '../contexts/Context';
 import '../styles/styles.css'
 
 export default function Registrarse (props) {

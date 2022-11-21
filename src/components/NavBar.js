@@ -1,9 +1,10 @@
 import React,{useContext}from 'react';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Link } from 'react-router-dom';
-import { DataContext } from '../context/Context';
+import { DataContext } from '../contexts/Context';
 import '../styles/styles.css'
 
+/**this is a main part of the application, as it provides a way to visualize the handling of the application, and could be used repeatedly*/
 export default function NavBar (props) {
     const {GlobalState,CerrarSesion} = useContext(DataContext);
     if(props.tipo === 1){

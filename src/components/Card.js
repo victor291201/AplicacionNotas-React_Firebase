@@ -2,8 +2,9 @@ import React,{Component} from 'react';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import '../styles/styles.css'
 import DropDown from './DropDown';
-import { DataContext } from '../context/Context';
+import { DataContext } from '../contexts/Context';
 
+/**this document contains the card component, it can be used repeatedly and has the task data interface*/
 class Card extends Component{
 	constructor(props) {
 		super(props);

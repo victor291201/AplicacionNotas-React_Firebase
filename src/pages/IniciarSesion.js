@@ -1,7 +1,7 @@
 import React,{useState,useContext} from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/styles.css'
-import { DataContext } from '../context/Context';
+import { DataContext } from '../contexts/Context';
 
 export default function IniciarSesion (props) {
     const [Obj, setObj] = useState({});

@@ -1,8 +1,8 @@
 import React,{useState,useEffect,useContext} from 'react';
-import NavBar from '../componentes/NavBar';
+import NavBar from '../components/NavBar';
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import { DataContext } from '../context/Context';
+import { DataContext } from '../contexts/Context';
 import '../styles/styles.css'
 import { Button } from 'bootstrap';
 

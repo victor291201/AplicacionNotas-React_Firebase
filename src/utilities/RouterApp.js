@@ -1,19 +1,20 @@
 import React,{useContext} from 'react';
-import { DataContext } from './context/Context';
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import IniciarSesion from "./vistas/IniciarSesion";
-import ReestablecerContraseña from "./vistas/ReestablecerContraseña";
-import Registrarse from "./vistas/Registrarse";
-import TareaE from "./vistas/TareaE";
-import TareaPM from "./vistas/TareaPM";
-import TareasE from "./vistas/TareasE.js";
-import TareasPM from "./vistas/TareasPM";
-import GestionarGruposM from "./vistas/GestionarGruposM";
-import GestionarGruposE from './vistas/GestionarGruposE';
-import Loader from './componentes/Loader';
-import Error404 from './vistas/Error404';
+import { DataContext } from '../contexts/Context';
+import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import IniciarSesion from "../pages/IniciarSesion";
+import ReestablecerContraseña from "../pages/ReestablecerContraseña";
+import Registrarse from "../pages/Registrarse";
+import TareaE from "../pages/TareaE";
+import TareaPM from "../pages/TareaPM";
+import TareasE from "../pages/TareasE.js";
+import TareasPM from "../pages/TareasPM";
+import GestionarGruposM from "../pages/GestionarGruposM";
+import GestionarGruposE from '../pages/GestionarGruposE';
+import Loader from '../components/Loader';
+import Error404 from '../pages/Error404';
 import { BrowserRouter,Route, Routes } from 'react-router-dom';
 
+/**in this document are the logic of log in and also the logic of the routes of the project*/
 export default function RouterApp(props){
   const {GlobalState} = useContext(DataContext);
   
@@ -76,7 +77,7 @@ export default function RouterApp(props){
           <Loader/>
             <Routes>
               <Route path='/' element={<TareasPM/>}/>
-              <Route path='/Tarea:id' element={<TareaPM/>}/>
+              <Route path='/Tarea/:id' element={<TareaPM/>}/>
               <Route path='/NuevaTarea' element={<TareaPM/>}/>
               <Route path='/GestionarGrupos' element={<GestionarGruposM/>}/>
               <Route path="*" element={<Error404/>}/>
@@ -88,7 +89,7 @@ export default function RouterApp(props){
           <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Routes>
               <Route path='/' element={<TareasPM/>}/>
-              <Route path='/Tarea:id' element={<TareaPM/>}/>
+              <Route path='/Tarea/:id' element={<TareaPM/>}/>
               <Route path='/NuevaTarea' element={<TareaPM/>}/>
               <Route path='/GestionarGrupos' element={<GestionarGruposM/>}/>
               <Route path="*" element={<TareasPM/>}/>

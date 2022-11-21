@@ -1,9 +1,10 @@
 import React,{Component} from 'react';
-import NavBar from '../componentes/NavBar';
-import Forms from '../componentes/Forms';
+import NavBar from '../components/NavBar';
+import Forms from '../components/Forms';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/styles.css'
+import '../styles/styles.css';
+import { DataContext } from '../contexts/Context';
 
 class GestionarGruposM extends Component{
     constructor(props) {
@@ -14,13 +15,14 @@ class GestionarGruposM extends Component{
 		this.AgregarGrupo = this.AgregarGrupo.bind(this);
 		this.EliminarGrupo = this.EliminarGrupo.bind(this);
 	}
+    static contextType = DataContext;
 	toggle(){
 		this.setState(PrevState =>({
 			view:!PrevState.view,grupos:PrevState.grupos
 		}));
 	}
     async componentDidMount(){
-        await axios.get("https://notasapi20221007143024.azurewebsites.net/api/Grupo/usuarios/"+"2"+"/grupos").then((response)=>{
+        await axios.get("https://notasapi20221007143024.azurewebsites.net/api/Grupo/usuarios/"+this.context.GlobalState.user.id+"/grupos").then((response)=>{
             console.log(response.data.data)
             this.setState(PrevState =>({
                 ...PrevState,grupos:response.data.data
@@ -43,6 +45,7 @@ class GestionarGruposM extends Component{
                 view:false
             }));
             console.log("se agrego el estudiante con exito")
+            window.location = '/AplicacionNotas-React_Firebase/GestionarGrupos'
         })
     }
     async EliminarGrupo(id){
